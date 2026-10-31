@@ -373,6 +373,10 @@ func formatOctet(mac string) (string, error) {
 	newmac := ""
 	for i := 0; i < len(octets); i++ {
 		oi := strings.TrimLeft(octets[i], "0")
+		if oi == "" {
+			// arp prints a zero octet as "0", not as an empty string.
+			oi = "0"
+		}
 		newmac += oi + ":"
 	}
 
